@@ -1,12 +1,23 @@
-# Autobackup for macOS
+# Autobackup scripts for macOS
+This project provides a set of scripts designed to perform automated backups and cleanup tasks on macOS using the `rsync` utility. The primary scripts included are `rsync-backup.sh` and `rsync-cleanup.sh`. They allow changes to be transferred using `rsync`, and unnecessary files to be removed as required.
 
-## Overview
-This project provides a set of scripts designed to perform automated backups and cleanup tasks on macOS using the `rsync` utility. The primary scripts included are `rsync-backup.sh` and `rsync-cleanup.sh`, each serving distinct purposes to ensure your data is efficiently backed up and unnecessary files are removed as required.
+## Setup
+macOS includes `rsync` by default, but ensure that you have it installed using `rsync --version`. 
+If it is not found, use [brew.sh](brew) or [https://github.com/RsyncProject/rsync/releases](rsync releases) to install the package.
 
+Simply execute the desired script from the terminal:
+
+```bash
+./rsync-backup.sh
+# Optionally run cleanup script to remove files missing from source directory
+./rsync-cleanup.sh
+```
+
+These scripts can be run in conjunction with `cron` or `automator`/`Apple Script` to start either on a schedule or as drives are connected to the system.
 ## Script Descriptions
 
 ### rsync-backup.sh
-The `rsync-backup.sh` script is responsible for creating backups of specified directories. It utilizes the powerful `rsync` command to perform incremental backups, ensuring that only new or modified files are copied, thus optimizing the backup process. This script offers the following features:
+The `rsync-backup.sh` script is responsible for creating backups of specified directories. It utilises the powerful `rsync` command to perform incremental backups, ensuring that only new or modified files are copied, thus optimizing the backup process. This script offers the following features:
 - **Source and Destination Configuration:** Users can specify which directories to back up and where to store the backup.
 - **Exclusion Rules:** Users can define certain patterns or files to exclude from the backup process, making it customizable to fit specific needs.
 - **Logging:** The script maintains logs of the backup operations, which can be useful for monitoring and troubleshooting.
@@ -17,13 +28,5 @@ The `rsync-cleanup.sh` script is designed to remove backup files that are no lon
 - **Safe Deletion:** The script ensures that important files are not deleted inadvertently, providing a safeguard during operations.
 - **Logging:** Similar to the backup script, it logs the cleanup actions taken for transparency and record-keeping.
 
-## Usage
-To utilize these scripts, ensure that you have `rsync` installed on your macOS system. Simply execute the desired script from the terminal:
-
-```bash
-./rsync-backup.sh
-./rsync-cleanup.sh
-```
-
-## Conclusion
-These scripts work together to provide a simple but effective solution for managing backups on macOS. By leveraging `rsync`, they ensure data integrity and minimize storage use while keeping the user informed through logging.
+Contributions are of course welcomed, feel free to submit any pull requests and I will occasionally review them :)
+- Ben
