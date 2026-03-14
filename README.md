@@ -1,5 +1,5 @@
 # Autobackup scripts for macOS
-This project provides a set of scripts designed to perform automated backups and cleanup tasks on macOS using the `rsync` utility. The primary scripts included are `rsync-backup.sh` and `rsync-cleanup.sh`. They allow changes to be transferred using `rsync`, and unnecessary files to be removed as required.
+This project provides a set of scripts designed to perform automated backups and cleanup tasks on macOS using the `rsync` utility. The primary scripts included are `rsync-backup.sh` and `rsync-cleanup.sh`. By default, only tracked changes are cloned, hugely reducing transfer time which is especially useful for slower USB thumb drive use. Cleanup script allows folders to be synced by remove files that are no longer in the source folder (be careful!).
 
 ## Setup
 macOS includes `rsync` by default, but ensure that you have it installed using `rsync --version`. 
@@ -23,10 +23,10 @@ The `rsync-backup.sh` script is responsible for creating backups of specified di
 - **Logging:** The script maintains logs of the backup operations, which can be useful for monitoring and troubleshooting.
 
 ### rsync-cleanup.sh
-The `rsync-cleanup.sh` script is designed to remove backup files that are no longer needed. This script helps in maintaining storage efficiency by deleting old backups according to user-defined retention policies. Key features include:
-- **Retention Policy:** Users can set how long backups should be kept before being eligible for deletion.
+The `rsync-cleanup.sh` script is designed to remove backup files that are no longer needed. This script helps in maintaining storage efficiency by deleting old backups. Key features include:
 - **Safe Deletion:** The script ensures that important files are not deleted inadvertently, providing a safeguard during operations.
 - **Logging:** Similar to the backup script, it logs the cleanup actions taken for transparency and record-keeping.
+⚠️ Be careful with this script! The goal is to make sure source and destination are identical copies, not maintain versioned history. Running this command will resync the destination location by removing files, keep that in mind :) 
 
 Contributions are of course welcomed, feel free to submit any pull requests and I will occasionally review them :)
 - Ben
